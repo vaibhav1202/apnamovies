@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content  %}
+<div style="background-image: url('/media/{{object.img}}'); background-size: cover; background-position: center;">
+<div style="background-color: white; opacity: 0.8;"  class="container-fluid p-5">
+<h1 class="myhead2">{{ object.name }}</h1>
+<table class="table table-striped">
+<tr><td>Genere</td> <td>{{object.genre}}</td></tr>
+<tr><td>Language</td> <td>{{object.language}}</td></tr>
+<tr><td>Description</td> <td>{{object.description}}</td></tr>
+<tr><td>Star Cast</td> <td>{{object.star_cast}}</td></tr>
+<tr><td>Youtube</td> <td>
+<div class="embed-responsive embed-responsive-16by9">
+<iframe  class="embed-responsive-item" src="{{object.ulink}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>    
+</td></tr>
+</table>
+{% if user.is_superuser or user == object.user %}
+<a class="btn btn-sm btn-warning" href="/college/movie/edit/{{object.id}}">Edit</a>
+<a class="btn btn-sm btn-danger" href="/college/movie/delete/{{object.id}}">Delete</a>
+{% endif %}
+<a class="btn btn-sm btn-primary" href="/college/movie/">Back</a>
+</div>
+</div>
+{% endblock %}
+
